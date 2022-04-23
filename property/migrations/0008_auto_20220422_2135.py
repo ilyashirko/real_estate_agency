@@ -10,10 +10,11 @@ def remake_phone(apps, schema_editor):
     for flat in Flat.objects.all():
         parsed_phonenumber = phonenumbers.parse(flat.owners_phonenumber, 'RU')
         if phonenumbers.is_valid_number(parsed_phonenumber):
-            flat.owner_pure_phone = phonenumbers.format_number(parsed_phonenumber, phonenumbers.PhoneNumberFormat.E164)
-        else:
-            flat.owner_pure_phone = None
-        flat.save()
+            flat.owner_pure_phone = phonenumbers.format_number(
+                parsed_phonenumber,
+                phonenumbers.PhoneNumberFormat.E164
+            )
+            flat.save()
 
 
 class Migration(migrations.Migration):
