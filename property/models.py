@@ -13,7 +13,8 @@ class Flat(models.Model):
         null=True
     )
     owner_pure_phone = PhoneNumberField(
-        blank=True
+        default=None,
+        null=True
     )
 
     created_at = models.DateTimeField(

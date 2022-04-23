@@ -9,7 +9,10 @@ def remake_phone(apps, schema_editor):
     Flat = apps.get_model('property', 'Flat')
     for flat in Flat.objects.all():
         parsed_phonenumber = phonenumbers.parse(flat.owners_phonenumber, 'RU')
-        flat.owner_pure_phone = phonenumbers.format_number(parsed_phonenumber, phonenumbers.PhoneNumberFormat.E164)
+        if phonenumbers.is_valid_number(parsed_phonenumber):
+            flat.owner_pure_phone = phonenumbers.format_number(parsed_phonenumber, phonenumbers.PhoneNumberFormat.E164)
+        else:
+            flat.owner_pure_phone = None
         flat.save()
 
 
