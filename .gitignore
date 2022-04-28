@@ -1,6 +1,7 @@
 *.sqlite3
 env
 .env
+.vscode
 property/__pycache__
 property/migrations/__pycache__
 real_estate_agency/__pycache__

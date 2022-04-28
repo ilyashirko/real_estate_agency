@@ -1,12 +1,12 @@
-from tabnanny import verbose
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 from phonenumber_field.modelfields import PhoneNumberField
 
+
 class Flat(models.Model):
     owner = models.CharField('ФИО владельца', max_length=200, db_index=True)
-    
+
     new_building = models.BooleanField(
         verbose_name='Новый дом?',
         default=None,
@@ -76,7 +76,7 @@ class Flat(models.Model):
         blank=True,
         db_index=True
     )
-    
+
     liked_by = models.ManyToManyField(
         User,
         related_name='liked_flats',
@@ -129,5 +129,6 @@ class Owner(models.Model):
         verbose_name='Квартиры в собственности',
         blank=True
     )
+
     def __str__(self):
         return self.full_name
