@@ -130,4 +130,4 @@ class Owner(models.Model):
         blank=True
     )
     def __str__(self):
-        return f'{self.full_name}'
+        return self.full_name
