@@ -13,15 +13,7 @@ def link_flats_and_owners(apps, scheme_editor):
             owner_pure_phone=owner.pure_phone
         )
         owner.flats.set(flats)
-        
-        
-    # for flat in flats.iterator():
-    #     owner = Owner.objects.get_or_create(
-    #         full_name=flat.owner,
-    #         phonenumber=flat.owners_phonenumber,
-    #         pure_phone=flat.owner_pure_phone
-    #     )
-
+    
 
 class Migration(migrations.Migration):
 
