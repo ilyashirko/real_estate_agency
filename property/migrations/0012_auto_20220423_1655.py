@@ -6,13 +6,21 @@ from django.db import migrations
 def link_flats_and_owners(apps, scheme_editor):
     Flat = apps.get_model('property', 'Flat')
     Owner = apps.get_model('property', 'Owner')
-    flats = Flat.objects.all()
-    for flat in flats.iterator():
-        owner = Owner.objects.get_or_create(
-            full_name=flat.owner,
-            phonenumber=flat.owners_phonenumber,
-            pure_phone=flat.owner_pure_phone
+    owners = Owner.objects.all()
+    for owner in owners.iterator():
+        flats = Flat.objects.filter(
+            owner=owner.full_name,
+            owner_pure_phone=owner.pure_phone
         )
+        owner.flats.set(flats)
+        
+        
+    # for flat in flats.iterator():
+    #     owner = Owner.objects.get_or_create(
+    #         full_name=flat.owner,
+    #         phonenumber=flat.owners_phonenumber,
+    #         pure_phone=flat.owner_pure_phone
+    #     )
 
 
 class Migration(migrations.Migration):
